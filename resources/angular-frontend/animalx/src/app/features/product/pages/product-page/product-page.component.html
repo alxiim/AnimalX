@@ -1,0 +1,16 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-6 border-end">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                 alt="..."
+                 class="w-100">
+        </div>
+        <div class="col-6">
+            <h2>{{product.name}}</h2>
+            <p>{{product.description}}</p>
+            <h4>€{{product.price}}</h4>
+            <button class="btn btn-primary"
+                    (click)="addToCart()">In winkelwagen</button>
+        </div>
+    </div>
+</div>

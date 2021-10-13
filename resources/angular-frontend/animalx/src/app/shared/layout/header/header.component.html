@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+        <a routerLink="/"
+           class="navbar-brand">AnimalX</a>
+        <div class="navbar-nav">
+            <a *ngIf="!isLoggedIn"
+               routerLink="/auth/login"
+               routerLinkActive="active"
+               class="nav-link">Inloggen</a>
+            <a *ngIf="isLoggedIn"
+               routerLink="/account"
+               routerLinkActive="active"
+               class="nav-link">Account</a>
+            <a routerLink="/cart"
+               routerLinkActive="active"
+               class="nav-link">
+                Winkelwagen
+                <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+            </a>
+        </div>
+
+    </div>
+</nav>
+<div class="navbar navbar-expand-lg navbar-dark"
+     style="background-color: #0BB596;">
+    <div class="container">
+        <div class="navbar-nav">
+            <a *ngFor="let category of categories$ | async"
+               routerLink="/products"
+               [queryParams]="{categoryIds: category.id}"
+               routerLinkActive="active"
+               class="nav-link">{{category.name}}</a>
+        </div>
+        <button class="btn btn-outline-dark">Premium</button>
+    </div>
+</div>

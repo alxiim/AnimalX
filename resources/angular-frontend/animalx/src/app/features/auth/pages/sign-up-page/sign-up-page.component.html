@@ -1,0 +1,89 @@
+<form [formGroup]="form"
+      class="container my-5 sign-up-form"
+      (ngSubmit)="signUp()">
+    <h3 class="mb-3">Account Aanmaken</h3>
+
+    <!-- First Name -->
+    <div class="form-floating mb-3">
+        <input type="text"
+               class="form-control"
+               id="firstName"
+               formControlName="firstName"
+               placeholder="John"
+               autocomplete="given-name"
+               required>
+        <label for="firstName">Voornaam</label>
+    </div>
+
+    <!-- Last Name -->
+    <div class="form-floating mb-3">
+        <input type="text"
+               id="lastName"
+               class="form-control"
+               formControlName="lastName"
+               placeholder="Doe"
+               autocomplete="family-name"
+               required>
+        <label for="lastName">Achternaam</label>
+    </div>
+
+    <!-- Email -->
+    <div class="form-floating mb-3">
+        <input type="email"
+               id="email"
+               class="form-control"
+               formControlName="email"
+               placeholder="name@example.com"
+               autocomplete="email"
+               required>
+        <label for="email">Email</label>
+    </div>
+
+    <!-- Password -->
+    <div class="form-floating mb-3">
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="password"
+               placeholder="password"
+               autocomplete="new-password"
+               required>
+        <label for="password">Wachtwoord</label>
+    </div>
+
+    <!-- Password -->
+    <div class="form-floating mb-3">
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="passwordConfirmation"
+               placeholder="password"
+               autocomplete="new-password"
+               required>
+        <label for="passwordConfirmation">Wachtwoord Bevestigen</label>
+    </div>
+
+    <!-- Remember Me -->
+    <!-- TODO -->
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox"
+                   value="remember-me"> Ingelogd blijven
+        </label>
+    </div>
+
+    <!-- Submit -->
+    <button class="w-100 btn btn-lg btn-primary"
+            type="submit">
+        Inloggen
+    </button>
+
+    <!-- Login -->
+    <div class="mt-4 pt-4 border-top">
+        <span>Al en account?</span>
+        <button class="btn btn-link"
+                routerLink="/auth/login">
+            Inloggen
+        </button>
+    </div>
+</form>

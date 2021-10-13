@@ -1,0 +1,56 @@
+<form [formGroup]="form"
+      class="container my-5 login-form"
+      (ngSubmit)="login()">
+    <h3 class="mb-3">Inloggen</h3>
+
+    <!-- Email -->
+    <div class="form-floating mb-3">
+        <input type="email"
+               id="email"
+               class="form-control"
+               formControlName="email"
+               placeholder="name@example.com"
+               autocomplete="email"
+               required>
+        <label for="email">Email</label>
+    </div>
+
+    <!-- Password -->
+    <div class="form-floating mb-3">
+        <input type="password"
+               id="password"
+               class="form-control"
+               formControlName="password"
+               placeholder="password"
+               autocomplete="current-password"
+               required>
+        <label for="password">Wachtwoord</label>
+        <div class="text-end mt-1">
+            <a class="link-secondary">Wachtwoord vergeten?</a>
+        </div>
+    </div>
+
+    <!-- Remember Me -->
+    <!-- TODO -->
+    <div class="checkbox mb-3">
+        <label>
+            <input type="checkbox"
+                   value="remember-me"> Ingelogd blijven
+        </label>
+    </div>
+
+    <!-- Submit -->
+    <button class="w-100 btn btn-lg btn-primary"
+            type="submit">
+        Inloggen
+    </button>
+
+    <!-- Sign Up -->
+    <div class="mt-4 pt-4 border-top">
+        <span>Nog geen account?</span>
+        <button class="btn btn-link"
+                routerLink="/auth/sign-up">
+            Account aanmaken
+        </button>
+    </div>
+</form>

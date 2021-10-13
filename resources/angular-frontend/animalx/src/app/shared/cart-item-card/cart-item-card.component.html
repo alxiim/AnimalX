@@ -1,0 +1,24 @@
+<div *ngIf="product && amount"
+     class="row border-bottom">
+    <div class="row main align-items-center">
+        <div class="col-2">
+            <img class="img-fluid py-3"
+                 src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg">
+        </div>
+        <div class="col">
+            <div class="row text-muted">{{product.categoryId}}</div>
+            <div class="row">{{product.name}}</div>
+        </div>
+        <div class="col">
+            <a href="#">-</a>
+            <a href="#"
+               class="border">{{amount}}
+            </a>
+            <a href="#">+</a>
+        </div>
+        <div class="col">
+            {{product.price * amount | currency:'EUR'}}
+            <span class="close">&#10005;</span>
+        </div>
+    </div>
+</div>

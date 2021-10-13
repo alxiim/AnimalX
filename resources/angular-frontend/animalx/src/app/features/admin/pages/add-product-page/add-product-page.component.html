@@ -1,0 +1,87 @@
+<div class="container my-5">
+    <form [formGroup]="form"
+          (ngSubmit)="createProduct()">
+        <!-- Name -->
+        <div class="mb-3">
+            <label for="name"
+                   class="form-label">
+                Name
+            </label>
+            <input type="text"
+                   id="name"
+                   class="form-control"
+                   formControlName="name"
+                   required>
+        </div>
+        <!-- Category -->
+        <div class="mb-3">
+            <label for="categoryId"
+                   class="form-label">
+                Category
+            </label>
+            <select id="categoryId"
+                    class="form-select"
+                    formControlName="categoryId"
+                    required>
+                <option *ngFor="let category of categories$ | async"
+                        [value]="category.id">{{category.name}}</option>
+            </select>
+            <div class="text-end">
+                <a class="link-secondary"
+                   (click)="createCategory()">Nieuwe categorie maken</a>
+            </div>
+        </div>
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description"
+                   class="form-label">
+                Description
+            </label>
+            <textarea id="description"
+                      class="form-control"
+                      formControlName="description"
+                      required></textarea>
+        </div>
+        <!-- Price -->
+        <div class="mb-3">
+            <label for="price"
+                   class="form-label">
+                Price
+            </label>
+            <input type="number"
+                   id="price"
+                   class="form-control"
+                   formControlName="price"
+                   step="0.01"
+                   required>
+        </div>
+        <!-- Country -->
+        <!-- <div class="mb-3">
+            <label for="country"
+                   class="form-label">
+                Country
+            </label>
+            <input type="text"
+                   id="country"
+                   class="form-control"
+                   formControlName="country"
+                   required>
+        </div> -->
+        <!-- Color -->
+        <!-- <div class="mb-3">
+            <label for="color"
+                   class="form-label">
+                Color
+            </label>
+            <input type="text"
+                   id="color"
+                   class="form-control"
+                   formControlName="color"
+                   required>
+        </div> -->
+        <button type="submit"
+                class="btn btn-primary"
+                [disabled]="!form.valid">Add Product</button>
+    </form>
+
+</div>
