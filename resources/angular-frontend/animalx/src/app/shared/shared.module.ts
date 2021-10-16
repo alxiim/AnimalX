@@ -1,10 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+
+// Layout
 import { HeaderComponent } from './layout/header/header.component';
 import { FooterComponent } from './layout/footer/footer.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { CartItemCardComponent } from './cart-item-card/cart-item-card.component';
+
+// Components
+import { ProductCardComponent } from './components/product-card/product-card.component';
+import { CartItemCardComponent } from './components/cart-item-card/cart-item-card.component';
+
+// Pipes
+import { OrderByPipe } from './pipes/order-by/order-by.pipe';
 
 
 
@@ -13,7 +20,8 @@ import { CartItemCardComponent } from './cart-item-card/cart-item-card.component
         HeaderComponent,
         FooterComponent,
         ProductCardComponent,
-        CartItemCardComponent
+        CartItemCardComponent,
+        OrderByPipe
     ],
     imports: [
         CommonModule,
@@ -23,7 +31,8 @@ import { CartItemCardComponent } from './cart-item-card/cart-item-card.component
         HeaderComponent,
         FooterComponent,
         ProductCardComponent,
-        CartItemCardComponent
+        CartItemCardComponent,
+        OrderByPipe
     ]
 })
 export class SharedModule { }

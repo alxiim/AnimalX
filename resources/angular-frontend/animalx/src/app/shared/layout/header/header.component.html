@@ -25,7 +25,7 @@
      style="background-color: #0BB596;">
     <div class="container">
         <div class="navbar-nav">
-            <a *ngFor="let category of categories$ | async"
+            <a *ngFor="let category of categories$ | async | orderBy:'name'"
                routerLink="/products"
                [queryParams]="{categoryIds: category.id}"
                routerLinkActive="active"
