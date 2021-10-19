@@ -14,14 +14,6 @@ export class CartService {
         private _authService: AuthService
     ) { }
 
-    // get cart$() {
-    //     if (this._authService.isLoggedIn()) {
-    //         // TODO get cart from database
-    //     } else {
-    //         // TODO Get cart from local storage
-    //     }
-    // }
-
     cart$ = new BehaviorSubject<CartItem[]>([]);
 
     get cart() {
@@ -35,43 +27,11 @@ export class CartService {
     }
 
     /**
-     * Add a product to the user's cart
+     * Add or remove a product to the user's cart
      * @param productId The product id
-     * @param amount The amount of products to add
+     * @param amount The amount of products to add/remove
      */
-    add(productId: number, amount: number) {
-        // Get the current cart
-        const cart = this.cart;
-
-        // Find the product in the cart
-        const index = cart.findIndex(cartItem => cartItem.productId === productId);
-
-        // If the product already exists
-        // change the amount
-        if (index !== -1) {
-            cart[index].amount += amount;
-        }
-
-        // If the product is not yet on the cart
-        // add it as a new cart item
-        else {
-            const cartItem = {
-                productId: productId,
-                amount: amount
-            };
-            cart.push(cartItem);
-        }
-
-        // Save the changes to the cart
-        this.cart = cart;
-    }
-
-    /**
-     * Remove a product from the user's cart
-     * @param productId The product id
-     * @param amount The amount of products to remove
-     */
-    remove(productId: number, amount: number) {
+    update(productId: number, amount: number) {
         // Get the current cart
         let cart = this.cart;
 
@@ -82,7 +42,7 @@ export class CartService {
         // change the amount
         if (index !== -1) {
             // Calculate the new amount
-            const newAmount = cart[index].amount - amount;
+            const newAmount = cart[index].amount + amount;
 
             // If the new amount is smaller than 1
             // Remove the entire product from the cart
@@ -92,6 +52,17 @@ export class CartService {
             } else {
                 cart[index].amount = newAmount;
             }
+        }
+
+        // If the product is not yet on the cart
+        // And more than 0 are added
+        // add it as a new cart item
+        else if (amount > 0) {
+            const cartItem = {
+                productId: productId,
+                amount: amount
+            };
+            cart.push(cartItem);
         }
 
         // Save the changes to the cart

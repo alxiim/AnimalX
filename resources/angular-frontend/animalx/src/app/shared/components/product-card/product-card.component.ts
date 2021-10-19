@@ -21,7 +21,7 @@ export class ProductCardComponent implements OnInit {
 
     addToCart() {
         if (this.product) {
-            this._cartService.add(this.product.id, 1);
+            this._cartService.update(this.product.id, 1);
         }
     }
 
