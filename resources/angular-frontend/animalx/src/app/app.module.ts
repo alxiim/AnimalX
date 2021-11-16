@@ -23,12 +23,12 @@ export function initCSRF(authService: AuthService) {
         SharedModule
     ],
     providers: [
-        // {
-        //     provide: APP_INITIALIZER,
-        //     useFactory: initCSRF,
-        //     deps: [AuthService],
-        //     multi: true
-        // }
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initCSRF,
+            deps: [AuthService],
+            multi: true
+        }
     ],
     bootstrap: [AppComponent]
 })

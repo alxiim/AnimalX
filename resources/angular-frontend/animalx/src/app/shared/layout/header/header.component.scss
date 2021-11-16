@@ -1,0 +1,37 @@
+.nav-item {
+    cursor: pointer;
+}
+
+.cartAnimation {
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 100%;
+        background-color: rgb(204, 178, 33);
+        animation: cartAnimation 0.5s infinite alternate;
+    }
+}
+
+@keyframes cartAnimation {
+    0% {
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 0;
+    }
+    50% {
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+    }
+    100% {
+        bottom: 4px;
+        left: 100%;
+        width: 0;
+        height: 0;
+    }
+}
