@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { of } from 'rxjs';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { CategoryService } from 'src/app/core/http/category/category.service';
+import { Category } from 'src/app/core/models/category.model';
 
 @Component({
   selector: 'app-header',
@@ -8,17 +10,6 @@ import { CategoryService } from 'src/app/core/http/category/category.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
-    links = [
-        {
-            path: '',
-            label: 'Home'
-        },
-        {
-            path: '/dieren',
-            label: 'Dieren'
-        }
-    ]
 
     categories$ = this._categoryService.query();
 

@@ -1,35 +1,67 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container">
+        <!-- LOGO -->
         <a routerLink="/"
            class="navbar-brand">AnimalX</a>
-        <div class="navbar-nav">
-            <a *ngIf="!isLoggedIn"
-               routerLink="/auth/login"
-               routerLinkActive="active"
-               class="nav-link">Inloggen</a>
-            <a *ngIf="isLoggedIn"
-               routerLink="/account"
-               routerLinkActive="active"
-               class="nav-link">Account</a>
-            <a routerLink="/cart"
-               routerLinkActive="active"
-               class="nav-link">
-                Winkelwagen
-                <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
-            </a>
+        <!-- RESPONSIVE TOGGLER -->
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarContent"
+                aria-controls="navbarContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- MENU ITEMS -->
+        <div class="collapse navbar-collapse"
+             id="navbarContent">
+            <ul class="navbar-nav"
+                style="margin-left: auto;">
+                <li class="nav-item">
+                    <a *ngIf="!isLoggedIn"
+                       routerLink="/auth/login"
+                       routerLinkActive="active"
+                       class="nav-link">Inloggen</a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="isLoggedIn"
+                       routerLink="/account"
+                       routerLinkActive="active"
+                       class="nav-link">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/cart"
+                       routerLinkActive="active"
+                       class="nav-link">
+                        Winkelwagen
+                        <!-- <span class="badge bg-dark text-white ms-1 rounded-pill">0</span> -->
+                    </a>
+                </li>
+                <div class="dropdown-divider"></div>
+                <li *ngFor="let category of categories$ | async | orderBy:'name'"
+                    routerLink="/products"
+                    [queryParams]="{categoryIds: category.id}"
+                    routerLinkActive="active"
+                    class="nav-item d-lg-none">
+                    <a class="nav-link">{{category.name}}</a>
+                </li>
+            </ul>
         </div>
-
     </div>
 </nav>
-<div class="navbar navbar-expand-lg navbar-dark"
+<!-- Submenu for desktops -->
+<div class="navbar navbar-expand-lg navbar-dark d-none d-lg-flex"
      style="background-color: #0BB596;">
     <div class="container">
         <div class="navbar-nav">
-            <a *ngFor="let category of categories$ | async | orderBy:'name'"
-               routerLink="/products"
-               [queryParams]="{categoryIds: category.id}"
-               routerLinkActive="active"
-               class="nav-link">{{category.name}}</a>
+            <li *ngFor="let category of categories$ | async | orderBy:'name'"
+                routerLink="/products"
+                [queryParams]="{categoryIds: category.id}"
+                routerLinkActive="active"
+                class="nav-item">
+                <a class="nav-link">{{category.name}}</a>
+            </li>
         </div>
         <button class="btn btn-outline-dark">Premium</button>
     </div>
