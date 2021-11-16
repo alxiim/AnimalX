@@ -14,7 +14,7 @@ export class CartService {
         private _authService: AuthService
     ) { }
 
-    cart$ = new BehaviorSubject<CartItem[]>([]);
+    cart$ = new BehaviorSubject<CartItem[]>(this.cart);
 
     get cart() {
         const cart = localStorage.getItem('animalx_cart');

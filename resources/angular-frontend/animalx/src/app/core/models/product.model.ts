@@ -8,14 +8,17 @@ export interface ApiProductResponse {
     color: string;
 }
 
-export interface ApiCreateProduct {
-    name: string;
-    categoryId: number;
-    description: string;
-    price: number;
-    country: string;
-    color: string;
-}
+// export interface ApiCreateProduct {
+//     name: string;
+//     categoryId: number;
+//     description: string;
+//     price: number;
+//     country: string;
+//     color: string;
+//     image?: File;
+// }
+
+export type ApiCreateProduct = FormData;
 
 export interface ApiUpdateProduct {
     name: string;

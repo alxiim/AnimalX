@@ -4,6 +4,9 @@ import { ApiService } from '../api/api.service';
 import { Product, ApiProductResponse, ApiCreateProduct, ApiUpdateProduct, ApiProductQueryConfig } from '../../models/product.model';
 import { Observable } from 'rxjs';
 import { objectKeysToSnakeCase } from '../../utils/utils';
+import { HttpClient } from '@angular/common/http';
+import { ApiResponse } from '../../models/api-response.model';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
@@ -12,7 +15,8 @@ import { objectKeysToSnakeCase } from '../../utils/utils';
 export class ProductService {
 
     constructor(
-        private _api: ApiService
+        private _api: ApiService,
+        private _http: HttpClient
     ) { }
 
     query(config?: ApiProductQueryConfig): Observable<Product[]> {
@@ -32,10 +36,11 @@ export class ProductService {
     }
 
     create(product: ApiCreateProduct): Observable<Product> {
-        return this._api.post<ApiCreateProduct, ApiProductResponse>('/products', product)
-            .pipe(
-                map(response => Product.adapt(response.data))
-            )
+        return this._http.post<ApiResponse<ApiProductResponse>>(
+            environment.apiUrl + '/products', product
+        ).pipe(
+            map(response => Product.adapt(response.data))
+        );
     }
 
     update(id: number, product: ApiUpdateProduct): Observable<Product> {

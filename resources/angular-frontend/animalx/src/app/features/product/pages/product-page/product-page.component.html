@@ -8,7 +8,7 @@
         <div class="col-6">
             <h2>{{product.name}}</h2>
             <p>{{product.description}}</p>
-            <h4>€{{product.price}}</h4>
+            <h4>{{product.price | currency:'EUR'}}</h4>
             <button class="btn btn-primary"
                     (click)="addToCart()">In winkelwagen</button>
         </div>

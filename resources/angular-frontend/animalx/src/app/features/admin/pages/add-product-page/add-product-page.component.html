@@ -55,6 +55,17 @@
                    step="0.01"
                    required>
         </div>
+        <!-- Image -->
+        <div class="mb-3">
+            <label for="image"
+                   class="form-label">
+                Image
+            </label>
+            <input type="file"
+                   id="image"
+                   class="form-control"
+                   (change)="handleFileInput($event)">
+        </div>
         <!-- Country -->
         <!-- <div class="mb-3">
             <label for="country"

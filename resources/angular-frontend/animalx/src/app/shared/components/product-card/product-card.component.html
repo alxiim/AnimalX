@@ -22,7 +22,7 @@
                 <div class="bi-star-fill"></div>
             </div>
             <!-- Product price-->
-            <!-- <span class="text-muted text-decoration-line-through">${{product.oldPrice}}</span> -->
+            <!-- <span class="text-muted text-decoration-line-through">{{product.oldPrice | currency:'EUR'}}</span> -->
             {{product.price | currency:'EUR'}}
         </div>
     </div>
@@ -30,7 +30,7 @@
     <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
         <div class="text-center">
             <button class="btn btn-outline-dark mt-auto"
-                    (click)="addToCart()">In Winkelwagen</button>
+                    (click)="addToCart(); $event.stopPropagation()">In Winkelwagen</button>
         </div>
     </div>
 </div>

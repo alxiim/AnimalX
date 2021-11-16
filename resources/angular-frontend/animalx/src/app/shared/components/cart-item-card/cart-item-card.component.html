@@ -1,4 +1,4 @@
-<div *ngIf="product && amount && category"
+<div *ngIf="product && item && category"
      class="row border-bottom">
     <div class="row main align-items-center">
         <div class="col-2">
@@ -12,14 +12,14 @@
         <div class="col">
             <button class="btn"
                     (click)="updateCart(-1)">-</button>
-            <span class="border">{{amount}}</span>
+            <span class="border">{{item.amount}}</span>
             <button class="btn"
                     (click)="updateCart(1)">+</button>
         </div>
         <div class="col">
-            {{product.price * amount | currency:'EUR'}}
+            {{product.price * item.amount | currency:'EUR'}}
             <button class="btn"
-                    (click)="updateCart(-amount)">&#10005;</button>
+                    (click)="updateCart(-item.amount)">&#10005;</button>
         </div>
     </div>
 </div>

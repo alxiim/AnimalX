@@ -21,11 +21,11 @@ class ProductController extends ApiController
         ]);
 
         $products = Product::when(
-                        $request->category_ids,
-                        function ($query, $ids) {
-                            return $query->whereIn('category_id', $ids);
-                        }
-                    )->get();
+            $request->category_ids,
+            function ($query, $ids) {
+                return $query->whereIn('category_id', $ids);
+            }
+        )->get();
 
         return $this->respondOK($products);
     }
@@ -43,24 +43,38 @@ class ProductController extends ApiController
             'name' => ['required', 'string'],
             'description' => ['required', 'string'],
             'price' => ['required', 'numeric'],
-            'images' => [],
-            'images.*' => ['image', 'mimes:jpeg,jpg,png'] // TODO max file size
+            'image*' => ['image', 'mimes:jpeg,jpg,png']
+            // 'images' => [],
+            // 'images.*' => ['image', 'mimes:jpeg,jpg,png'] // TODO max file size
         ]);
 
         $product = Product::create($request->all()); // TODO is this safe
 
         // Add product images
-        if ($request->hasfile('images')) {
-            foreach ($request->file('images') as $image) {
-                // Save the image to the public disk
-                $path = $image->store('product_images', 'public');
+        if ($request->hasfile('image')) {
+            $image = $request->file('image');
 
-                // Add the image path to the database
-                $product->images()->create([
-                    'filename' => $path
-                ]);
-            }
+            // Save the image to the public disk
+            $path = $image->store('product_images', 'public');
+
+            // Add the image path to the database
+            $product->images()->create([
+                'filename' => $path
+            ]);
         }
+
+        // Add product images
+        // if ($request->hasfile('images')) {
+        //     foreach ($request->file('images') as $image) {
+        //         // Save the image to the public disk
+        //         $path = $image->store('product_images', 'public');
+
+        //         // Add the image path to the database
+        //         $product->images()->create([
+        //             'filename' => $path
+        //         ]);
+        //     }
+        // }
 
         return $this->respondCreated($product, 'Product has been created.');
     }

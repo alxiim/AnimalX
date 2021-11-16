@@ -21,6 +21,8 @@ export class AddProductPageComponent implements OnInit {
 
     categories$ = this._categoryService.query();
 
+    image: File | null = null;
+
     constructor(
         private _fb: FormBuilder,
         private _productService: ProductService,
@@ -37,7 +39,19 @@ export class AddProductPageComponent implements OnInit {
             return;
         }
 
-        this._productService.create(this.form.value)
+        const product: FormData = new FormData();
+
+        // Add product details to form data
+        for (const key in this.form.value) {
+            product.append(key, this.form.value[key]);
+        }
+
+        // Add product image to form data
+        if (this.image) {
+            product.append('image', this.image, this.image.name);
+        }
+
+        this._productService.create(product)
             .subscribe(product => {
                 console.log(product);
                 // TODO show response and redirect
@@ -55,6 +69,11 @@ export class AddProductPageComponent implements OnInit {
                 this.categories$ = this._categoryService.query();
             });
         }
+    }
+
+    handleFileInput(event: any) {
+        const files = event.target.files;
+        this.image = files.item(0);
     }
 
 }

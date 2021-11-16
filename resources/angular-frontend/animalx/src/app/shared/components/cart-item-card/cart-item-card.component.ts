@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/http/cart/cart.service';
 import { CategoryService } from 'src/app/core/http/category/category.service';
 import { ProductService } from 'src/app/core/http/product/product.service';
+import { CartItem } from 'src/app/core/models/cart.model';
 import { Category } from 'src/app/core/models/category.model';
 import { Product } from 'src/app/core/models/product.model';
 
@@ -13,10 +14,7 @@ import { Product } from 'src/app/core/models/product.model';
 export class CartItemCardComponent implements OnInit {
 
     @Input()
-    amount?: number;
-
-    @Input()
-    productId?: number;
+    item?: CartItem;
 
     product?: Product;
 
@@ -30,7 +28,7 @@ export class CartItemCardComponent implements OnInit {
 
     ngOnInit(): void {
         // TODO throw error is productId not given
-        this._productService.get(this.productId!)
+        this._productService.get(this.item?.productId!)
             .subscribe(product => {
                 this.product = product;
 
@@ -42,7 +40,7 @@ export class CartItemCardComponent implements OnInit {
 
     updateCart(amount: number) {
         // TODO throw error is productId not given
-        this._cartService.update(this.productId!, amount);
+        this._cartService.update(this.item?.productId!, amount);
     }
 
 }
