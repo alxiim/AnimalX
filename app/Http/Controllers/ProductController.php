@@ -25,7 +25,7 @@ class ProductController extends ApiController
             function ($query, $ids) {
                 return $query->whereIn('category_id', $ids);
             }
-        )->get();
+        )->with('images')->get();
 
         return $this->respondOK($products);
     }
@@ -87,7 +87,7 @@ class ProductController extends ApiController
      */
     public function show($id)
     {
-        $product = Product::findOrFail($id); // TODO is fail exception caught?
+        $product = Product::with('images')->findOrFail($id); // TODO is fail exception caught?
 
         return $this->respondOK($product);
     }
