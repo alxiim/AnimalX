@@ -18,7 +18,7 @@
         </div>
         <div class="col">
             {{product.price * amount | currency:'EUR'}}
-            <button class="close"
+            <button class="btn"
                     (click)="updateCart(-amount)">&#10005;</button>
         </div>
     </div>
