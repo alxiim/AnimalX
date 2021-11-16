@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { CategoryService } from 'src/app/core/http/category/category.service';
 import { ProductService } from 'src/app/core/http/product/product.service';
+import { camelToSnake } from 'src/app/core/utils/utils';
 
 @Component({
   selector: 'app-add-product-page',
@@ -43,7 +44,7 @@ export class AddProductPageComponent implements OnInit {
 
         // Add product details to form data
         for (const key in this.form.value) {
-            product.append(key, this.form.value[key]);
+            product.append(camelToSnake(key), this.form.value[key]);
         }
 
         // Add product image to form data
