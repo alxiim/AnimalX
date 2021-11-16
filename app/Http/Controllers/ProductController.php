@@ -42,10 +42,25 @@ class ProductController extends ApiController
             'category_id' => ['required', 'exists:categories,id'],
             'name' => ['required', 'string'],
             'description' => ['required', 'string'],
-            'price' => ['required', 'numeric']
+            'price' => ['required', 'numeric'],
+            'images' => [],
+            'images.*' => ['image', 'mimes:jpeg,jpg,png'] // TODO max file size
         ]);
 
         $product = Product::create($request->all()); // TODO is this safe
+
+        // Add product images
+        if ($request->hasfile('images')) {
+            foreach ($request->file('images') as $image) {
+                // Save the image to the public disk
+                $path = $image->store('product_images', 'public');
+
+                // Add the image path to the database
+                $product->images()->create([
+                    'filename' => $path
+                ]);
+            }
+        }
 
         return $this->respondCreated($product, 'Product has been created.');
     }
