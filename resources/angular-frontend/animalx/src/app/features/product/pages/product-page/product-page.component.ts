@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from 'src/app/core/http/cart/cart.service';
 import { Product } from 'src/app/core/models/product.model';
 
 @Component({
@@ -12,7 +13,8 @@ export class ProductPageComponent implements OnInit {
     product: Product;
 
     constructor(
-        private _route: ActivatedRoute
+        private _route: ActivatedRoute,
+        private _cartService: CartService
     ) {
         // TODO should this be in OnInit?
         this.product = this._route.snapshot.data.product;
@@ -22,7 +24,7 @@ export class ProductPageComponent implements OnInit {
     }
 
     addToCart() {
-        // TODO add to cart
+        this._cartService.update(this.product.id, 1);
     }
 
 }
