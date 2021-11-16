@@ -6,6 +6,11 @@ export interface ApiProductResponse {
     price: number;
     country: string;
     color: string;
+    images: ProductImage[]
+}
+
+export interface ProductImage {
+    filename: string;
 }
 
 // export interface ApiCreateProduct {
@@ -42,7 +47,8 @@ export class Product {
         public description: string,
         public price: number,
         public country: string,
-        public color: string
+        public color: string,
+        public images: string[]
     ) {}
 
     static adapt(item: ApiProductResponse): Product {
@@ -53,7 +59,8 @@ export class Product {
             item.description,
             item.price,
             item.country,
-            item.color
+            item.color,
+            item.images.map(image => image.filename)
         );
     }
 
