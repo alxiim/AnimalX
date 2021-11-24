@@ -48,7 +48,7 @@ export class CartService {
             // Remove the entire product from the cart
             // Otherwise, change the amount
             if (newAmount < 1) {
-                cart = cart.splice(index, 1);
+                cart.splice(index, 1);
             } else {
                 cart[index].amount = newAmount;
             }

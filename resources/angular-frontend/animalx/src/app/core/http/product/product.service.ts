@@ -3,7 +3,6 @@ import { map } from 'rxjs/operators';
 import { ApiService } from '../api/api.service';
 import { Product, ApiProductResponse, ApiCreateProduct, ApiUpdateProduct, ApiProductQueryConfig } from '../../models/product.model';
 import { Observable } from 'rxjs';
-import { objectKeysToSnakeCase } from '../../utils/utils';
 import { HttpClient } from '@angular/common/http';
 import { ApiResponse } from '../../models/api-response.model';
 import { environment } from 'src/environments/environment';
