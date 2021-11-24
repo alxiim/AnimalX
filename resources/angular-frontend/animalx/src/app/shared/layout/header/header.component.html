@@ -40,6 +40,12 @@
                     </a>
                 </li>
                 <div class="dropdown-divider"></div>
+                <li routerLink="/products"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact: true}"
+                    class="nav-item d-lg-none">
+                    <a class="nav-link">Alle dieren</a>
+                </li>
                 <li *ngFor="let category of categories$ | async | orderBy:'name'"
                     routerLink="/products"
                     [queryParams]="{categoryIds: category.id}"
@@ -56,6 +62,12 @@
      style="background-color: #0BB596;">
     <div class="container">
         <div class="navbar-nav">
+            <li routerLink="/products"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{exact: true}"
+                class="nav-item">
+                <a class="nav-link">Alle dieren</a>
+            </li>
             <li *ngFor="let category of categories$ | async | orderBy:'name'"
                 routerLink="/products"
                 [queryParams]="{categoryIds: category.id}"

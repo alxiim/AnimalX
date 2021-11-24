@@ -1,0 +1,33 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-12 col-md mb-4">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                 alt=""
+                 width="100%">
+        </div>
+        <div class="col-sm-12 col-md mb-4">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                 alt=""
+                 width="100%">
+            <!-- <h1 class="text-primary">Meet & greet</h1>
+            <h4 class="text-muted">De webshop voor al uw dieren</h4> -->
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <h2 class="mb-3 text-primary">Kies een categorie</h2>
+        <div class="col-12 col-sm-6 col-md-4 col-xl mb-4"
+             *ngFor="let category of categories | async"
+             routerLink="/products"
+             [queryParams]="{categoryIds: category.id}">
+            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                 alt=""
+                 width="100%">
+        </div>
+    </div>
+    <div class="row">
+        <h2 class="mb-3 text-primary">Populaire dieren</h2>
+        <app-product-card class="col-sm-12 col-md-4 col-xl mb-4"
+                          *ngFor="let product of popularProducts | async | slice:0:5"
+                          [product]="product"></app-product-card>
+    </div>
+</div>

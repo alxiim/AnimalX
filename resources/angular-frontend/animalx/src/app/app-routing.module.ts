@@ -6,6 +6,10 @@ import { NoAuthGuard } from './core/guards/no-auth/no-auth.guard';
 
 const routes: Routes = [
     {
+        path: '',
+        loadChildren: () => import('./features/home/home.module').then(m => m.HomeModule)
+    },
+    {
         path: 'products',
         loadChildren: () => import('./features/product/product.module').then(m => m.ProductModule)
     },
