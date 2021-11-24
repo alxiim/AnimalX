@@ -1,13 +1,13 @@
-<div *ngIf="product && item && category"
+<div *ngIf="item && category"
      class="row border-bottom">
     <div class="row main align-items-center">
         <div class="col-2">
             <img class="img-fluid py-3"
-                 [src]="product.images[0] ? 'storage/'+product.images[0] : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'">
+                 [src]="item.product.images[0] ? 'storage/'+item.product.images[0] : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'">
         </div>
         <div class="col">
             <div class="row text-muted">{{category.name}}</div>
-            <div class="row">{{product.name}}</div>
+            <div class="row">{{item.product.name}}</div>
         </div>
         <div class="col">
             <button class="btn"
@@ -17,7 +17,7 @@
                     (click)="updateCart(1)">+</button>
         </div>
         <div class="col">
-            {{product.price * item.amount | currency:'EUR'}}
+            {{item.product.price * item.amount | currency:'EUR'}}
             <button class="btn"
                     (click)="updateCart(-item.amount)">&#10005;</button>
         </div>

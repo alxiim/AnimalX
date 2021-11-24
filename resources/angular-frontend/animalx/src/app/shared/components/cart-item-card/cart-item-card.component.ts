@@ -14,33 +14,27 @@ import { Product } from 'src/app/core/models/product.model';
 export class CartItemCardComponent implements OnInit {
 
     @Input()
-    item?: CartItem;
-
-    product?: Product;
+    item?: {
+        product: Product;
+        amount: number;
+    };
 
     category?: Category;
 
     constructor(
-        private _productService: ProductService,
         private _categoryService: CategoryService,
         private _cartService: CartService
     ) {}
 
     ngOnInit(): void {
-        // TODO throw error is productId not given
-        this._productService.get(this.item?.productId!)
-            .subscribe(product => {
-                this.product = product;
-
-                // Get the category
-                this._categoryService.get(product.categoryId)
+        // TODO throw error if product is undefined
+        this._categoryService.get(this.item!.product.categoryId)
                     .subscribe(category => this.category = category);
-            });
     }
 
     updateCart(amount: number) {
         // TODO throw error is productId not given
-        this._cartService.update(this.item?.productId!, amount);
+        this._cartService.update(this.item!.product.id, amount);
     }
 
 }
