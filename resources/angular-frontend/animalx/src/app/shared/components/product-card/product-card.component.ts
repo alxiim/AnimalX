@@ -19,6 +19,10 @@ export class ProductCardComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    getCoverImage(product: Product) {
+        return product.images[0] ? 'storage/'+product.images[0] : 'https://dummyimage.com/450x300/dee2e6/6c757d.jpg'
+    }
+
     addToCart() {
         if (this.product) {
             this._cartService.update(this.product.id, 1);

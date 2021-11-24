@@ -1,3 +1,14 @@
 .card {
-    display: cursor;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+
+    &:hover {
+        border-color: var(--bs-primary);
+    }
+}
+
+.product-image {
+    padding-top: 66.6%;
+    background-size: cover;
+    background-position: center;
 }
