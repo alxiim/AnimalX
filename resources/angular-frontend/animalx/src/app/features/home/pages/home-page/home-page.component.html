@@ -24,10 +24,10 @@
                  width="100%">
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         <h2 class="mb-3 text-primary">Populaire dieren</h2>
         <app-product-card class="col-sm-12 col-md-4 col-xl mb-4"
-                          *ngFor="let product of popularProducts | async | slice:0:5"
+                          *ngFor="let product of popularProducts | async | slice:0:4"
                           [product]="product"></app-product-card>
     </div>
 </div>
