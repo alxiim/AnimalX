@@ -76,7 +76,7 @@ class CategoryController extends ApiController
      */
     public function destroy($id)
     {
-        Category::delete($id);
+        Category::findOrFail($id)->delete();
 
         return $this->respondOK(null, 'Category has been deleted.');
     }

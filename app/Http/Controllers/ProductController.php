@@ -18,12 +18,21 @@ class ProductController extends ApiController
         $request->validate([
             'category_ids' => 'array',
             'category_ids.*' => 'int',
+            'product_ids' => 'array',
+            'product_ids.*' => 'int',
         ]);
 
         $products = Product::when(
+            // Filter on category
             $request->category_ids,
             function ($query, $ids) {
                 return $query->whereIn('category_id', $ids);
+            }
+        )->when(
+            // Filter on product id
+            $request->product_ids,
+            function ($query, $ids) {
+                return $query->whereIn('id', $ids);
             }
         )->with('images')->get();
 
@@ -123,7 +132,7 @@ class ProductController extends ApiController
      */
     public function destroy($id)
     {
-        Product::delete($id);
+        Product::findOrFail($id)->delete();
 
         return $this->respondOK(null, 'Product has been deleted.');
     }
