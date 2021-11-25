@@ -35,7 +35,8 @@ export interface ApiUpdateProduct {
 }
 
 export interface ApiProductQueryConfig {
-    "categoryIds[]": number[];
+    "categoryIds[]"?: number[];
+    "productIds[]"?: number[];
 }
 
 export class Product {

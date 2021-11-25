@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CartService } from 'src/app/core/http/cart/cart.service';
 import { CategoryService } from 'src/app/core/http/category/category.service';
 import { ProductService } from 'src/app/core/http/product/product.service';
-import { CartItem } from 'src/app/core/models/cart.model';
+import { CartItem, CartItemWithProduct } from 'src/app/core/models/cart.model';
 import { Category } from 'src/app/core/models/category.model';
 import { Product } from 'src/app/core/models/product.model';
 
@@ -14,10 +14,10 @@ import { Product } from 'src/app/core/models/product.model';
 export class CartItemCardComponent implements OnInit {
 
     @Input()
-    item?: {
-        product: Product;
-        amount: number;
-    };
+    item?: CartItemWithProduct;
+
+    @Input()
+    disabled = false;
 
     category?: Category;
 

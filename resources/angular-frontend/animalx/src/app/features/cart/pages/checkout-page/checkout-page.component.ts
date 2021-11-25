@@ -1,15 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { map, switchMap } from 'rxjs/operators';
 import { CartService } from 'src/app/core/http/cart/cart.service';
 import { ProductService } from 'src/app/core/http/product/product.service';
 import { CartItemWithProduct } from 'src/app/core/models/cart.model';
 
 @Component({
-    selector: 'app-cart-page',
-    templateUrl: './cart-page.component.html',
-    styleUrls: ['./cart-page.component.scss']
+  selector: 'app-checkout-page',
+  templateUrl: './checkout-page.component.html',
+  styleUrls: ['./checkout-page.component.scss']
 })
-export class CartPageComponent implements OnInit {
+export class CheckoutPageComponent implements OnInit {
 
     cart$ = this._cartService.cart$.pipe(
         switchMap(cartItems => {
@@ -35,9 +36,18 @@ export class CartPageComponent implements OnInit {
 
     total = 0;
 
+    contactForm = this._fb.group({
+        'firstName': null,
+        'lastName': null,
+        'street': null,
+        'postalCode': null,
+        'city': null
+    });
+
     constructor(
         private _cartService: CartService,
-        private _productService: ProductService
+        private _productService: ProductService,
+        private _fb: FormBuilder
     ) { }
 
     ngOnInit(): void {

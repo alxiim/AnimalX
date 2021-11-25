@@ -1,7 +1,28 @@
 <div class="container my-5">
     <h1>Winkelwagen</h1>
-    <app-cart-item-card *ngFor="let item of cart$ | async"
-                        [item]="item"></app-cart-item-card>
-    <div class="dropdown-divider"></div>
-    <p class="text-end">Totaalbedrag {{total | currency:'EUR'}}</p>
+    <ng-container *ngIf="cart$ | async as cart; else loader">
+        <div class="text-center"
+             *ngIf="!cart.length">
+            <p>Uw winkelwagen is nog leeg.</p>
+            <button routerLink="/products"
+                    class="btn btn-primary">Verder winkelen</button>
+        </div>
+        <app-cart-item-card *ngFor="let item of cart$ | async"
+                            [item]="item"></app-cart-item-card>
+        <div class="text-end"
+             *ngIf="cart.length">
+            <p>Totaalbedrag {{total | currency:'EUR'}}</p>
+            <button class="btn btn-primary"
+                    routerLink="checkout">Afrekenen</button>
+        </div>
+    </ng-container>
 </div>
+
+<!-- LOADER -->
+<ng-template #loader>
+    <div class="text-center">
+        <div class="spinner-border text-primary"
+             role="status">
+        </div>
+    </div>
+</ng-template>

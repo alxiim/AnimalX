@@ -1,4 +1,6 @@
 <div class="container my-5">
+
+    <!-- HERO SECTION -->
     <div class="row">
         <div class="col-sm-12 col-md mb-4">
             <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
@@ -13,21 +15,39 @@
             <h4 class="text-muted">De webshop voor al uw dieren</h4> -->
         </div>
     </div>
+
+    <!-- CATEGORIES -->
     <div class="row justify-content-center">
         <h2 class="mb-3 text-primary">Kies een categorie</h2>
-        <div class="col-12 col-sm-6 col-md-4 col-xl mb-4"
-             *ngFor="let category of categories | async"
-             routerLink="/products"
-             [queryParams]="{categoryIds: category.id}">
-            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                 alt=""
-                 width="100%">
-        </div>
+        <ng-container *ngIf="categories$ | async as categories; else loader">
+            <div class="col-12 col-sm-6 col-md-4 col-xl mb-4"
+                 *ngFor="let category of categories"
+                 routerLink="/products"
+                 [queryParams]="{categoryIds: category.id}">
+                <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+                     alt=""
+                     width="100%">
+            </div>
+        </ng-container>
     </div>
+
+    <!-- POPULAR PRODUCTS -->
     <div class="row justify-content-center">
         <h2 class="mb-3 text-primary">Populaire dieren</h2>
-        <app-product-card class="col-sm-12 col-md-4 col-xl mb-4"
-                          *ngFor="let product of popularProducts | async | slice:0:4"
-                          [product]="product"></app-product-card>
+        <ng-container *ngIf="popularProducts$ | async as popularProducts; else loader">
+            <app-product-card class="col-sm-12 col-md-4 col-xl mb-4"
+                              *ngFor="let product of popularProducts | slice:0:4"
+                              [product]="product"></app-product-card>
+        </ng-container>
     </div>
+
 </div>
+
+<!-- LOADER -->
+<ng-template #loader>
+    <div class="text-center">
+        <div class="spinner-border text-primary"
+             role="status">
+        </div>
+    </div>
+</ng-template>

@@ -1,8 +1,18 @@
 <div class="container my-5">
-    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-        <div *ngFor="let product of products$ | async"
+    <div *ngIf="products$ | async as products; else loader"
+         class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+        <div *ngFor="let product of products"
              class="col mb-5">
             <app-product-card [product]="product"></app-product-card>
         </div>
     </div>
 </div>
+
+<!-- LOADER -->
+<ng-template #loader>
+    <div class="text-center">
+        <div class="spinner-border text-primary"
+             role="status">
+        </div>
+    </div>
+</ng-template>

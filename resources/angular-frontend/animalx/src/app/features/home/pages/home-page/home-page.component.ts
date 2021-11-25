@@ -9,9 +9,9 @@ import { ProductService } from 'src/app/core/http/product/product.service';
 })
 export class HomePageComponent implements OnInit {
 
-    popularProducts = this._productService.query();
+    popularProducts$ = this._productService.query();
 
-    categories = this._categoryService.query();
+    categories$ = this._categoryService.query();
 
     constructor(
         private _productService: ProductService,

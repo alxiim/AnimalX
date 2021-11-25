@@ -11,15 +11,18 @@
         </div>
         <div class="col">
             <button class="btn"
-                    (click)="updateCart(-1)">-</button>
+                    (click)="updateCart(-1)"
+                    *ngIf="!disabled">-</button>
             <span class="border">{{item.amount}}</span>
             <button class="btn"
-                    (click)="updateCart(1)">+</button>
+                    (click)="updateCart(1)"
+                    *ngIf="!disabled">+</button>
         </div>
         <div class="col">
             {{item.product.price * item.amount | currency:'EUR'}}
             <button class="btn"
-                    (click)="updateCart(-item.amount)">&#10005;</button>
+                    (click)="updateCart(-item.amount)"
+                    *ngIf="!disabled">&#10005;</button>
         </div>
     </div>
 </div>

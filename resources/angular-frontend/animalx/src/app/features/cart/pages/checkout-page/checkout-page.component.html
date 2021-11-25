@@ -1,0 +1,115 @@
+<div class="container my-5">
+    <!-- <h1>Afrekenen</h1> -->
+    <div class="row">
+
+        <!-- DELIVERY -->
+        <div class="col-7">
+            <h3 class="mb-3">Aflever- en factuurgegevens</h3>
+            <form [formGroup]="contactForm">
+
+                <!-- NAME -->
+                <div class="row">
+                    <!-- First Name -->
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   id="firstName"
+                                   class="form-control"
+                                   formControlName="firstName"
+                                   placeholder="Guccio"
+                                   autocomplete="given-name"
+                                   required>
+                            <label for="firstName">Voornaam</label>
+                        </div>
+                    </div>
+
+                    <!-- Last Name -->
+                    <div class="col-6">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   id="lastName"
+                                   class="form-control"
+                                   formControlName="lastName"
+                                   placeholder="Gucci"
+                                   autocomplete="family-name"
+                                   required>
+                            <label for="lastName">Achternaam</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- DELIVERY ADDRESS -->
+                <div class="row">
+                    <!-- Street -->
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   id="street"
+                                   class="form-control"
+                                   formControlName="street"
+                                   placeholder="P.C. Hooftstraat 91"
+                                   required>
+                            <label for="street">Straat</label>
+                        </div>
+                    </div>
+
+                    <!-- Postal Code -->
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   id="postalCode"
+                                   class="form-control"
+                                   formControlName="postalCode"
+                                   placeholder="1071 BR"
+                                   required>
+                            <label for="postalCode">Postcode</label>
+                        </div>
+                    </div>
+
+                    <!-- City -->
+                    <div class="col-4">
+                        <div class="form-floating mb-3">
+                            <input type="text"
+                                   id="city"
+                                   class="form-control"
+                                   formControlName="city"
+                                   placeholder="Amsterdam"
+                                   required>
+                            <label for="city">Stad</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ORDER -->
+                <button class="btn btn-primary">Bestelling plaatsen</button>
+            </form>
+        </div>
+
+        <!-- CART -->
+        <div class="col-5">
+            <h3 class="mb-3">Controleer bestelling</h3>
+            <ng-container *ngIf="cart$ | async as cart; else loader">
+                <app-cart-item-card *ngFor="let item of cart$ | async"
+                                    [item]="item"
+                                    [disabled]="true"></app-cart-item-card>
+                <div class="text-end"
+                     *ngIf="cart.length">
+                    <p>Totaalbedrag {{total | currency:'EUR'}}</p>
+                </div>
+            </ng-container>
+            <div class="text-end">
+                <button class="btn btn-sm btn-outline-secondary"
+                        routerLink="/cart">Terug naar winkelwagen</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- LOADER -->
+<ng-template #loader>
+    <div class="text-center">
+        <div class="spinner-border text-primary"
+             role="status">
+        </div>
+    </div>
+</ng-template>
