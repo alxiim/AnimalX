@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { of } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { CartService } from 'src/app/core/http/cart/cart.service';
 import { CategoryService } from 'src/app/core/http/category/category.service';
@@ -12,6 +12,14 @@ import { Category } from 'src/app/core/models/category.model';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+    cartLength$ = this._cartService.cart$.pipe(map(
+        cart => {
+            let length = 0;
+            cart.forEach(item => length += item.amount);
+            return length;
+        }
+    ));
 
     categories$ = this._categoryService.query();
 
