@@ -8,7 +8,7 @@
                  width="100%">
         </div>
         <div class="col-sm-12 col-md mb-4">
-            <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
+            <img src="assets/animalx.jpg"
                  alt=""
                  width="100%">
             <!-- <h1 class="text-primary">Meet & greet</h1>
@@ -25,8 +25,8 @@
                *ngFor="let category of categories"
                routerLink="/products"
                [queryParams]="{categoryIds: category.id}">
-                <img src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg"
-                     alt=""
+                <img [src]="category.imageUrl$ | async"
+                     [alt]="category.name"
                      width="100%">
                 <p class="text-center mt-2">{{category.name}}</p>
             </a>

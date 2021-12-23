@@ -11,14 +11,14 @@ export class AdminGuard implements CanActivate, CanLoad {
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        return true;
+        return true; // TODO
     }
 
     canLoad(
         route: Route,
         segments: UrlSegment[]
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        return true;
+        return true; // TODO
     }
 
 }
