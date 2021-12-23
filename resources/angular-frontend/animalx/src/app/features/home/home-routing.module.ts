@@ -11,7 +11,7 @@ const routes: Routes = [{
     path: 'contact',
     component: ContactPageComponent
 }, {
-    path: 'voorwaarden',
+    path: 'terms',
     component: TermsConditionsPageComponent
 }];
 
