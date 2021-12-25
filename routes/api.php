@@ -35,7 +35,7 @@ Route::patch('/products', [ProductController::class, 'update']);
 Route::delete('/products/{id}', [ProductController::class, 'destroy']);
 
 // Protected routes
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:web'])->group(function () {
     // User
     Route::get('/user', function (Request $request) {
         return $request->user();
