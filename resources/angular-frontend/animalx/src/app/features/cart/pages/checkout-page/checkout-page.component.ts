@@ -64,7 +64,7 @@ export class CheckoutPageComponent implements OnInit {
     placeOrder() {
         this._orderService.create({
             products: this._cartService.cart
-        });
+        }).subscribe();
     }
 
 }
