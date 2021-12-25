@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { map, switchMap } from 'rxjs/operators';
 import { CartService } from 'src/app/core/http/cart/cart.service';
+import { OrdersService } from 'src/app/core/http/orders/orders.service';
 import { ProductService } from 'src/app/core/http/product/product.service';
 import { CartItemWithProduct } from 'src/app/core/models/cart.model';
 
@@ -47,6 +48,7 @@ export class CheckoutPageComponent implements OnInit {
     constructor(
         private _cartService: CartService,
         private _productService: ProductService,
+        private _orderService: OrdersService,
         private _fb: FormBuilder
     ) { }
 
@@ -56,6 +58,12 @@ export class CheckoutPageComponent implements OnInit {
             let price = 0;
             cart.forEach(item => {price += item.amount * item.product.price })
             this.total = price;
+        });
+    }
+
+    placeOrder() {
+        this._orderService.create({
+            products: this._cartService.cart
         });
     }
 

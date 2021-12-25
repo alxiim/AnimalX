@@ -21,13 +21,13 @@ export class OrdersService {
         return this._api.get<ApiOrderResponse[]>(
             '/orders'
         ).pipe(
-            map(response => response.data.map(product => Order.adapt(product)))
+            map(response => response.data.map(order => Order.adapt(order)))
         )
     }
 
-    create(product: ApiCreateOrder): Observable<Order> {
+    create(order: ApiCreateOrder): Observable<Order> {
         return this._http.post<ApiResponse<ApiOrderResponse>>(
-            environment.apiUrl + '/products', product
+            environment.apiUrl + '/orders', order
         ).pipe(
             map(response => Order.adapt(response.data))
         );

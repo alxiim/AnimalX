@@ -5,7 +5,8 @@
         <!-- DELIVERY -->
         <div class="col-7">
             <h3 class="mb-3">Aflever- en factuurgegevens</h3>
-            <form [formGroup]="contactForm">
+            <form [formGroup]="contactForm"
+                  (ngSubmit)="placeOrder()">
 
                 <!-- NAME -->
                 <div class="row">
@@ -81,7 +82,8 @@
                 </div>
 
                 <!-- ORDER -->
-                <button class="btn btn-primary">Bestelling plaatsen</button>
+                <button class="btn btn-primary"
+                        type="submit">Bestelling plaatsen</button>
             </form>
         </div>
 
