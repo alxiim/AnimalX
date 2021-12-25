@@ -35,8 +35,9 @@ export class ProductService {
     }
 
     create(product: ApiCreateProduct): Observable<Product> {
-        return this._http.post<ApiResponse<ApiProductResponse>>(
-            environment.apiUrl + '/products', product
+        return this._api.post<ApiCreateProduct, ApiProductResponse>(
+            environment.apiUrl + '/products',
+            product
         ).pipe(
             map(response => Product.adapt(response.data))
         );
