@@ -21,7 +21,9 @@ export class OrdersService {
         return this._api.get<ApiOrderResponse[]>(
             '/orders'
         ).pipe(
-            map(response => response.data.map(order => Order.adapt(order)))
+            map(response => response.data.map(order => Order.adapt(order))),
+            // Order by date
+            map(orders => orders.sort((a, b) => b.date.getTime() - a.date.getTime()))
         );
     }
 
