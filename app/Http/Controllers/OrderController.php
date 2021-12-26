@@ -42,7 +42,7 @@ class OrderController extends ApiController
         $order->products()->attach($request->products);
 
         // Get the order with products
-        $orderWithProducts = Order::findOrFail($order->id)->with('products');
+        $orderWithProducts = Order::with('products')->findOrFail($order->id);
 
         return $this->respondCreated($orderWithProducts, 'Order has been created.');
     }
