@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, switchMap } from 'rxjs/operators';
 import { CartService } from 'src/app/core/http/cart/cart.service';
 import { OrdersService } from 'src/app/core/http/orders/orders.service';
@@ -49,7 +50,8 @@ export class CheckoutPageComponent implements OnInit {
         private _cartService: CartService,
         private _productService: ProductService,
         private _orderService: OrdersService,
-        private _fb: FormBuilder
+        private _fb: FormBuilder,
+        private _router: Router
     ) { }
 
     ngOnInit(): void {
@@ -64,7 +66,12 @@ export class CheckoutPageComponent implements OnInit {
     placeOrder() {
         this._orderService.create({
             products: this._cartService.cart
-        }).subscribe();
+        }).subscribe(() => {
+            // Empty cart
+            this._cartService.cart = [];
+            // Redirect to orders page
+            this._router.navigateByUrl('/account/orders');
+        });
     }
 
 }
