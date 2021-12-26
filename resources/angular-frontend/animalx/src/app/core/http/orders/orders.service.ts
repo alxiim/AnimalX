@@ -27,7 +27,8 @@ export class OrdersService {
 
     create(order: ApiCreateOrder): Observable<Order> {
         return this._api.post<ApiCreateOrder, ApiOrderResponse>(
-            environment.apiUrl + '/orders', order
+            '/orders',
+            order
         ).pipe(
             map(response => Order.adapt(response.data))
         );
