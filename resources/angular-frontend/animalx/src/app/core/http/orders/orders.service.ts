@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
-import { ApiResponse } from '../../models/api-response.model';
+import { CartItem } from '../../models/cart.model';
 import { ApiCreateOrder, ApiOrderResponse, Order } from '../../models/order.model';
+import { objectKeysToSnakeCase } from '../../utils/utils';
 import { ApiService } from '../api/api.service';
 
 @Injectable({
@@ -28,7 +28,11 @@ export class OrdersService {
     create(order: ApiCreateOrder): Observable<Order> {
         return this._api.post<ApiCreateOrder, ApiOrderResponse>(
             '/orders',
-            order
+            {
+                products: order.products.map(
+                    product => objectKeysToSnakeCase(product) as CartItem
+                )
+            }
         ).pipe(
             map(response => Order.adapt(response.data))
         );
