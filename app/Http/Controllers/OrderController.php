@@ -33,10 +33,15 @@ class OrderController extends ApiController
             'products.*.amount' => ['required', 'integer']
         ]);
 
-        // $order = Order::create($request->all()); // TODO is this safe
+        // Create order
+        $order = Order::create([
+            'user_id' => auth()->id()
+        ]);
 
-        // return $this->respondCreated($order, 'Order has been created.');
+        // Attach products to order
+        $order->products()->attach($request->products);
 
+        return $this->respondCreated($order, 'Order has been created.');
     }
 
     /**
