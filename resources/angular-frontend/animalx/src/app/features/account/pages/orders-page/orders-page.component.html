@@ -6,7 +6,8 @@
                  class="mb-5">
                 <h4>{{order.date | date}}</h4>
                 <app-cart-item-card *ngFor="let item of order.items"
-                                    [item]="item"></app-cart-item-card>
+                                    [item]="item"
+                                    [disabled]="true"></app-cart-item-card>
             </div>
         </div>
     </div>
