@@ -4,7 +4,7 @@
             <h3 class="mb-3">Mijn bestellingen</h3>
             <div *ngFor="let order of orders$ | async"
                  class="mb-5">
-                <h4>order.date | date</h4>
+                <h4>{{order.date | date}}</h4>
                 <app-cart-item-card *ngFor="let item of order.items"
                                     [item]="item"></app-cart-item-card>
             </div>

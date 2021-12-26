@@ -14,7 +14,7 @@ class OrderController extends ApiController
      */
     public function index()
     {
-        $orders = Order::where('user_id', auth()->id())->get();
+        $orders = Order::where('user_id', auth()->id())->with('products')->get();
         return $this->respondOK($orders);
     }
 
@@ -52,7 +52,7 @@ class OrderController extends ApiController
      */
     public function show($id)
     {
-        $order = Order::where('user_id', auth()->id())->findOrFail($id);
+        $order = Order::where('user_id', auth()->id())->with('products')->findOrFail($id);
         return $this->respondOK($order);
     }
 }
