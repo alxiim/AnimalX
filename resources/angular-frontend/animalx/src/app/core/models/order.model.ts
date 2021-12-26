@@ -1,9 +1,9 @@
-import { CartItem } from "./cart.model";
+import { CartItem, CartItemWithProduct } from "./cart.model";
 
 export interface ApiOrderResponse {
     id: number;
     created_at: string;
-    products: CartItem[];
+    products: any[];
 }
 
 export interface ApiCreateOrder {
@@ -15,14 +15,19 @@ export class Order {
     constructor(
         public id: number,
         public date: Date,
-        public items: CartItem[]
+        public items: CartItemWithProduct[]
     ) {}
 
     static adapt(item: ApiOrderResponse): Order {
         return new Order(
             item.id,
             new Date(item.created_at),
-            item.products
+            item.products.map(product => {
+                return {
+                    product: {...product},
+                    amount: product.pivot.amount
+                }
+            })
         );
     }
 
