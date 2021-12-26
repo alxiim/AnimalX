@@ -1,4 +1,5 @@
 import { CartItem, CartItemWithProduct } from "./cart.model";
+import { Product } from "./product.model";
 
 export interface ApiOrderResponse {
     id: number;
@@ -24,7 +25,7 @@ export class Order {
             new Date(item.created_at),
             item.products.map(product => {
                 return {
-                    product: {...product},
+                    product: Product.adapt(product),
                     amount: product.pivot.amount
                 }
             })
